@@ -58,8 +58,8 @@ function memberRoleRemoveEvent(
 
 function nicknameUpdateEvent(
     member: GuildMember,
-    oldMemberNickname: string | null,
-    newMemberNickname: string | null,
+    oldMemberNickname: string,
+    newMemberNickname: string,
     client: Bot
 ): MessageEmbed {
     const desc = `${member.user.tag} changed their nickname from ${oldMemberNickname} to ${newMemberNickname}`;
@@ -71,8 +71,8 @@ function nicknameUpdateEvent(
             iconURL: member.displayAvatarURL(),
         })
         .setColor("ORANGE")
-        .addField("New Nickname", newMemberNickname || "NULL", true)
-        .addField("Old Nickname", oldMemberNickname || "NULL", true)
+        .addField("Old Nickname", oldMemberNickname , true)
+        .addField("New Nickname", newMemberNickname , true)
         .setTimestamp()
         .setFooter({
             text: "Boolean",
@@ -134,7 +134,7 @@ export default TypedEvent({
         if (oldMember.nickname !== newMember.nickname) {
             embed = nicknameUpdateEvent(
                 newMember as GuildMember,
-                oldMember.nickname!,
+                oldMember.nickname || oldMember.user.username,
                 newMember.nickname!,
                 client
             );
