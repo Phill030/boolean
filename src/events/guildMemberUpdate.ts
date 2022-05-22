@@ -117,7 +117,7 @@ export default TypedEvent({
                 );
                 // Role Remove
             } else if (lastLog.changes?.at(0)?.key === "$remove") {
-                embed = await memberRoleRemoveEvent(
+                embed = memberRoleRemoveEvent(
                     client,
                     lastLog.target! as User,
                     lastLog.executor!,
@@ -132,7 +132,7 @@ export default TypedEvent({
 
         // Nickname updates
         if (oldMember.nickname !== newMember.nickname) {
-            embed = await nicknameUpdateEvent(
+            embed = nicknameUpdateEvent(
                 newMember as GuildMember,
                 oldMember.nickname!,
                 newMember.nickname!,
